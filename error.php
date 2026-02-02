@@ -5,7 +5,7 @@
 <html>
 
   <head>
-    <title>Pokemon Info - Database Error</title>
+    <title>Pokemon Info - Error</title>
     <link rel="stylesheet" type="text/css" href="pokemon.css" />
   </head>
 
@@ -13,13 +13,12 @@
     <?php include("header.php"); ?>
 
     <main>
-      <h2>Database Error</h2>
+      <h2>Error</h2>
 
-      <p>There was an error connecting to the database.</p>
-      <p>The database must be installed.</p>
-      <p>MySQL must be running.</p>
-      <p>Error Message: <?php echo $_SESSION["database_error"]; ?>
+      
+      <p>Error Message: <?php echo $_SESSION["add_error"]; ?>
 
+      <p><a href="add_pokemon_form.php">Return to add Pokemon</a></p>
       <p><a href="index.php">View Pokedex</a></p>
       
     </main>
