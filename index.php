@@ -3,8 +3,8 @@
     require("database.php");
     
     $query = '
-      SELECT id, name, pokemonNumber, type, weakAgainst, generation, evolvesInto FROM pokedex
-    ';
+      SELECT p.id, p.name, p.pokemonNumber, p.type, p.weakAgainst, p.generation, p.evolvesInto, p.imageName, p.legendaryID, l.status 
+      FROM pokedex p LEFT JOIN Legendary_status l ON p.legendaryID = l.legendaryID';
     $statement = $db->prepare($query);
     $statement->execute();
     $pokedex = $statement->fetchAll();
@@ -33,8 +33,11 @@
           <th>Weak Against</th>
           <th>Generation</th>
           <th>Evolves Into</th>
+          <th>status</th>
+          <th>Photo</th>
           <th>&nbsp;</th> <!-- for update button -->
           <th>&nbsp;</th> <!-- for delete button -->
+          <th>&nbsp;</th> <!-- for view details button -->
         </tr>
 
         <?php foreach ($pokedex as $pokemon): ?>
@@ -45,6 +48,11 @@
             <td><?php echo htmlspecialchars($pokemon['weakAgainst']); ?></td>
             <td><?php echo htmlspecialchars($pokemon['generation']); ?></td>
             <td><?php echo htmlspecialchars($pokemon['evolvesInto']); ?></td>
+            <td><?php echo htmlspecialchars($pokemon['status']); ?></td>
+            <td>
+              <img src="<?php echo htmlspecialchars('images/' . $pokemon['imageName']); ?>"
+                    alt="<?php echo htmlspecialchars($pokemon['name']); ?>"/>
+            </td>
             <td>
               <form action="update_pokemon_form.php" method="post">
                 <input type="hidden" name="pokemon_id" value="<?php echo $pokemon['id']; ?>">
@@ -56,7 +64,13 @@
                 <input type="hidden" name="pokemon_id" value="<?php echo $pokemon['id']; ?>">
                 <input type="submit" value="Delete">
               </form>
-            </td>    
+            </td>
+            <td>
+              <form action="pokemon_details.php" method="post">
+                <input type="hidden" name="pokemon_id" value="<?php echo $pokemon['id']; ?>">
+                <input type="submit" value="View Details">
+              </form>
+            </td>        
           </tr>
         <?php endforeach; ?>  
       </table>

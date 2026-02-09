@@ -1,7 +1,14 @@
 <?php
     session_start();
    
-    require("database.php");
+    require_once("database.php");
+
+    $query = 'SELECT legendaryID, status FROM Legendary_status';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $legendary_status = $statement->fetchAll();
+    $statement->closeCursor();
+
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +46,18 @@
 
           <label>Evolves Into:</label>
           <input type="text" name="evolves_into" /><br />
+
+          <label>status:</label>
+          <select name="legendary_id">
+            <?php foreach ($legendary_status as $status): ?>
+              <option value="<?php echo htmlspecialchars($status['legendaryID']); ?>">
+                <?php echo htmlspecialchars($status['status']); ?>
+              </option>
+            <?php endforeach; ?>
+          </select><br />
+
+          <label>Upload Image:</label>
+          <input type="file" name="file1" /><br />
 
         </div>
 
