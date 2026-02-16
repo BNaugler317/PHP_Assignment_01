@@ -1,4 +1,10 @@
 <?php
+    session_start();
+
+    if (!isset($_SESSION['isLoggedIn'])) {
+      header("Location: login_form.php");
+      die();
+    }
    
     require("database.php");
     
@@ -24,7 +30,7 @@
     <?php include("header.php"); ?>
 
     <main>
-      <h2>Pokedex</h2>
+      <h2>Pokedex (<?php echo "Logged In User: " . $_SESSION['userName']; ?>) </h2>
       <table>
         <tr>
           <th>Name</th>
@@ -76,7 +82,15 @@
       </table>
 
       <p><a href="add_pokemon_form.php">Add Pokemon</a></p>
-      
+
+      <!-- temprary link to register user form for testing purposes, will remove later -->
+      <!-- <p><a href="register_user_form.php">Register User - Temporary</a></p> -->
+
+      <!-- temprary link to login form for testing purposes, will remove later -->
+      <!-- <p><a href="login_form.php">Login - Temporary</a></p> -->
+
+      <p><a href="logout.php">Logout</a></p>
+
     </main>
 
     <?php include("footer.php"); ?>
