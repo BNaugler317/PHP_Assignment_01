@@ -16,7 +16,7 @@
     <main>
       <h2>Add a Pokemon confirmation</h2>
 
-      <p>
+      <p class="confirmation-message">
         Thank you for adding, <?php echo $_SESSION["fullName"]; ?>,  to your Pokedex!
         Gotta catch 'em all!
       </p>

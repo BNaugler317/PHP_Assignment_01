@@ -9,7 +9,7 @@
 
   // check for duplicate user_name
   $queryUsers = '
-      SELECT userID, userName, password, emailAddress, failed_attempts, last_failed_login FROM registrations WHERE userName = :userName';
+      SELECT userID, userName, password, emailAddress, failed_attempts, last_failed_login, role FROM registrations WHERE userName = :userName';
     $statement = $db->prepare($queryUsers);
     $statement->bindValue(':userName', $user_name);
     $statement->execute();
@@ -42,6 +42,7 @@
 
       $_SESSION['user_id'] = $user['userID'];
       $_SESSION['userName'] = $user['userName'];
+      $_SESSION['role'] = $user['role'];
       header("Location: login_confirmation.php");
       exit;
     }

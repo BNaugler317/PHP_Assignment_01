@@ -16,7 +16,7 @@
       <h2>Error</h2>
 
       
-      <p>Error Message: <?php echo $_SESSION["add_error"]; ?>
+      <p class="error-message">Error Message: <?php echo $_SESSION["add_error"]; ?>
 
       <p><a href="add_pokemon_form.php">Return to add Pokemon</a></p>
       <p><a href="index.php">View Pokedex</a></p>

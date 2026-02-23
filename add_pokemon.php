@@ -1,6 +1,11 @@
 <?php
   session_start();
 
+  if (empty($_SESSION['isLoggedIn']) || ($_SESSION['role'] ?? '') !== 'admin') {
+      header("Location: index.php");
+      exit;
+    }
+
   $name = filter_input(INPUT_POST, 'name');
   $pokemon_number = filter_input(INPUT_POST, 'pokemon_number');
   $type = filter_input(INPUT_POST, 'type');

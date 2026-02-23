@@ -16,7 +16,7 @@
     <main>
       <h2>Registation confirmation</h2>
 
-      <p>
+      <p class="confirmation-message">
         Thank you for Registering, <?php echo $_SESSION["userName"]; ?>, you may now view your Pokedex!
         Gotta catch 'em all!
       </p>

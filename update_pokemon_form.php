@@ -1,4 +1,10 @@
 <?php
+  session_start();
+
+  if (empty($_SESSION['isLoggedIn']) || ($_SESSION['role'] ?? '') !== 'admin') {
+      header("Location: index.php");
+      exit;
+    }
     
     require_once("database.php");
 

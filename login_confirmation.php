@@ -16,7 +16,7 @@
     <main>
       <h2>Login confirmation</h2>
 
-      <p>
+      <p class="confirmation-message">
         Thank you, <?php echo $_SESSION["userName"]; ?> for Logging in, you may now view your Pokedex!
         Gotta catch 'em all!
       </p>
